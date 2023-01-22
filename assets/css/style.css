@@ -1,0 +1,21 @@
+/* fonts */
+/* font-family: 'Kreon', serif;
+font-family: 'Monofett', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Kreon:wght@300;400&family=Monofett&display=swap");
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: "Kreon", serif, sans-serif;
+}
+body {
+    background-color: #000000;
+    font-size: 2rem;
+    font-family: "Kreon", serif, sans-serif;
+    font-weight: 300;
+    background-image: url(../images/color_big.jpg);
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
