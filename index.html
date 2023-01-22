@@ -10,12 +10,14 @@
     <title>Quiz for fun</title>
 </head>
 
-<body>
+<body class="body-container">
    <header class="header">
     <h1>Quiz for fun</h1>
+    <div class="score-style hide" id="score">Score: <span id="actual-score">0</span>/10</div>
 </header>
+<section class="section">
     <div class="container">
-        <div id="timer" class="set-timer hide">0</div>
+        <div id="timer" class="set-timer hide">Timer: <span id="timer-reduce"></span>s</div>
         <form id="form-container" method="POST" action="https://formdump.codeinstitute.net/" target="_blank">
             <h2 class="popup-h2">Sign up!</h2>
             <p id="errors"></p>
@@ -25,7 +27,6 @@
             </div>
             <input type="submit">
         </form>
-    
         <div id="question-container" class="hide">
             <div id="question">question</div>
             <div id="answer-button" class="button-grid">
@@ -39,7 +40,19 @@
             <button id="start-button" class="start-button button hide">start</button>
             <button id="next-button" class="next-button button hide">next</button>
         </div>
+        <div></div>
     </div>
+</section>
+<Footer class="footer">
+    <p>Copyright 2023 ©</p>
+    <a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"
+        aria-label="Goes to facebook on a new tab."></a>
+    <a href="https://twitter.com/" class="fa fa-twitter" target="_blank"
+        aria-label="Goes to twitter on a new tab."></a>
+    <a href="https://www.instagram.com/" class="fa fa-instagram" target="_blank"
+        aria-label="Goes to Instagram on a new tab."></a>
+</Footer>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>

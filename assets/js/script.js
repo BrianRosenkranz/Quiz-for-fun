@@ -2,9 +2,13 @@ let randomQuestions, questionIndex;
 let startbtn = document.getElementById("start-button");
 let nextButtons = document.getElementById("next-button");
 let questionContainer = document.getElementById("question-container");
-let timer = document.getElementById('timer')
-let questionElement = document.getElementById("question")
-let answerButton = document.getElementById("answer-button")
+let timer = document.getElementById('timer');
+let score = document.getElementById('score');
+let currentScore=0;
+let timeS = document.getElementById("timer-reduce")
+let time=5;
+let questionElement = document.getElementById("question");
+let answerButton = document.getElementById("answer-button");
 startbtn.addEventListener("click", quizGame);
 nextButtons.addEventListener("click", () => {
     questionIndex++;
@@ -26,7 +30,6 @@ function formFirst(event) {
         //form.submit();
         form.classList.add("hide")
         startbtn.classList.remove('hide')
-        timer.classList.remove('hide')
     }
 
 }
@@ -37,7 +40,16 @@ function quizGame() {
     randomQuestions = myQuestions.sort(() => Math.random() - 0.5);
     questionIndex = 0;
     questionContainer.classList.remove('hide');
-    showNextQuestion()
+    showNextQuestion();
+    timer.classList.remove('hide');
+    score.classList.remove("hide");
+    let countdown= setInterval(()=>{
+        time--;
+        timeS.innerText= time
+    },1000)
+    if(time<=0 || time<1){
+        clearInterval(countdown)
+    }
 }
 // shows the question in container
 function showNextQuestion() {
@@ -91,15 +103,26 @@ function checkStatusClass(element, correct){
     resetStatus(element);
     if (correct){
         element.classList.add("correct")
+        adjustScore(true)
     } else {
         element.classList.add("incorrect")
+        adjustScore(false)
     }
 }
 function resetStatus(element){
     element.classList.remove('correct');
     element.classList.remove("incorrect")
 }
-
+function adjustScore() {
+    if (true) {
+      currentScore++;
+    } else {
+      if (currentScore > 0) {
+        currentScore--;
+        }
+    }
+    document.getElementById("actual-score").textContent = currentScore;
+  }
 const myQuestions = [{
         question: "How many bones are there in an adult human body?",
         answers: [{
@@ -121,7 +144,7 @@ const myQuestions = [{
         ],
     },
     {
-        question: "Which is the strongest muscle in the human .",
+        question: "Which is the strongest muscle in the human body?",
         answers: [{
                 text: 'Glutes',
                 correct: false
@@ -167,7 +190,7 @@ const myQuestions = [{
                 correct: false
             },
             {
-                text: 'Costa Rica}',
+                text: 'Costa Rica',
                 correct: false
             },
             {
