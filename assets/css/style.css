@@ -2,20 +2,85 @@
 /* font-family: 'Kreon', serif;
 font-family: 'Monofett', cursive; */
 @import url("https://fonts.googleapis.com/css2?family=Kreon:wght@300;400&family=Monofett&display=swap");
-*, *::before, *::after{
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    font-size: 2rem;
-    font-weight: 300;
     font-family: "Kreon", serif, sans-serif;
 }
+
 body {
     background-color: #000000;
     font-size: 2rem;
-    font-family: "Kreon", serif, sans-serif;
     font-weight: 300;
     background-image: url(../images/color_big.jpg);
-    border-radius: 5px;
     margin: 0;
     padding: 0;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(89, 91, 162, 0.77);
+    width: 800px;
+    max-width: 80%;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: rgb(250, 250, 250);
+    border-image: initial;
+    border-radius: 5px;
+    padding: 10px;
+}
+.set-timer{
+    display: unset;
+    position: relative;
+    float: right;
+}
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin:20px 0
+}
+
+.button {
+    border-radius: 5px;
+    border: 1px #fafafa outset;
+    font-size: 60%;
+    width: 70%;
+    padding: 5px 10px;
+
+}
+button:hover {
+    font-size: 25px;
+    opacity: 1;
   }
+.controls{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+}
+.button.correct{
+    color: black;
+    background-color: greenyellow;
+}
+.button.incorrect{
+    color: black;
+    background-color: red;
+}
+
+.start-button,
+.next-button{
+padding: 10px, 20px;
+}
+.hide{
+    display: none;
+}

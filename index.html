@@ -10,6 +10,14 @@
 </head>
 <body>
     <div class="container">
+        <div id="timer" class="set-timer hide">0</div>
+        <h2 onclick="togglePopup()" class="popup-h2">Sign up!</h2>
+        <form action="" method="post">
+           <div class="input-field"><input type="text" id="name" placeholder="Username"></div>
+           <div class="input-field"><input type="email" id="email" placeholder="example@example.com"></div>
+           <div><input type="submit" placeholder="Sign in!"></div>
+        </form>
+        </div>
         <div id="question-container" class="hide">
             <div id="question">question</div>
             <div id="answer-button" class="button-grid">
@@ -20,7 +28,7 @@
             </div>
         </div>
         <div class="controls">
-            <button id="start-button" class="start-button button">start</button>
+            <button id="start-button" class="start-button button hide">start</button>
             <button id="next-button" class="next-button button hide">next</button>
         </div>
     </div>
