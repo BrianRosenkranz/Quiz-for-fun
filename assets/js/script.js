@@ -1,10 +1,15 @@
 let randomQuestions, questionIndex;
 let startbtn = document.getElementById("start-button");
+let nextButtons = document.getElementById("next-button");
 let questionContainer = document.getElementById("question-container");
 let timer = document.getElementById('timer')
 let questionElement = document.getElementById("question")
 let answerButton = document.getElementById("answer-button")
 startbtn.addEventListener("click", quizGame);
+nextButtons.addEventListener("click", () => {
+    questionIndex++;
+    showNextQuestion();
+})
 //form function. First of everything. 
 let usernames = ["Harry", "Daisy", "Michael", "Sarah", "Sally"];
 let form = document.getElementById("form-container");
@@ -36,12 +41,14 @@ function quizGame() {
 }
 // shows the question in container
 function showNextQuestion() {
+    nextButton();
     showQuestion(randomQuestions[questionIndex]);
 }
+
 // Function gets the question from myQuestions
 function showQuestion(question) {
     questionElement.innerHTML = question.question;
-    myQuestions.answers.forEach(answer => {
+    question.answers.forEach(answer => {
         let button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add("button");
@@ -50,13 +57,49 @@ function showQuestion(question) {
             button.dataset.correct = answer.correct;
         };
         button.addEventListener("click", selectAnswer)
-
+        answerButton.appendChild(button)
     });
+}
+// remove buttons in html and adding the new ones
+function nextButton(){
+    resetStatus(document.body)
+    nextButtons.classList.add('hide');
+    while (answerButton.firstChild){
+        answerButton.removeChild(answerButton.firstChild )
+    }
 }
 
 function selectAnswer(q) {
-
+ let buttonChoice =q.target
+ let correct = buttonChoice.dataset.correct;
+ //Create function to check the correct answers from the new buttons
+ checkStatusClass(document.body, correct);
+ Array.from(answerButton.children).forEach(button => {
+    checkStatusClass(button, button.dataset.correct)
+ })
+ if(randomQuestions.length >questionIndex +1 /*array start wiht 0*/) {
+    nextButtons.classList.add("hide")
+ }else{
+    startbtn.innerText="Restart"
+    startbtn.classList.remove('hide')
+ }
+ nextButtons.classList.remove("hide");
+ //score function
 }
+//inside the function, another function to reset each checked answer, and change the color
+function checkStatusClass(element, correct){
+    resetStatus(element);
+    if (correct){
+        element.classList.add("correct")
+    } else {
+        element.classList.add("incorrect")
+    }
+}
+function resetStatus(element){
+    element.classList.remove('correct');
+    element.classList.remove("incorrect")
+}
+
 const myQuestions = [{
         question: "How many bones are there in an adult human body?",
         answers: [{
