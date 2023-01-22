@@ -19,6 +19,7 @@ body {
     padding: 0;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -26,6 +27,7 @@ body {
 }
 
 .container {
+    order: 2;
     text-align: center;
     background-color: rgba(89, 91, 162, 0.77);
     width: 800px;
@@ -37,16 +39,29 @@ body {
     border-radius: 5px;
     padding: 10px;
 }
-.set-timer{
+.header {
+    text-align: left;
+    font-size: 100%;
+    order: 1;
+    align-self: flex-start;
+  }
+  h1 {
+    margin-left: 3%;
+    color: #000000;
+    font-family: "Monofett", cursive, sans-serif;
+    font-weight: 400;
+  }
+.set-timer {
     display: unset;
     position: relative;
     float: right;
 }
+
 .button-grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 10px;
-    margin:20px 0
+    margin: 20px 0
 }
 
 .button {
@@ -57,30 +72,47 @@ body {
     padding: 5px 10px;
 
 }
+
 button:hover {
     font-size: 25px;
     opacity: 1;
-  }
-.controls{
+}
+
+.controls {
     display: flex;
     justify-content: center;
     padding: 10px;
     margin: 5px;
     align-items: center;
 }
-.button.correct{
+
+.button.correct {
     color: black;
     background-color: greenyellow;
 }
-.button.incorrect{
+
+.button.incorrect {
     color: black;
     background-color: red;
 }
 
 .start-button,
-.next-button{
-padding: 10px, 20px;
+.next-button {
+    padding: 10px, 20px;
 }
-.hide{
+
+.hide {
     display: none;
+}
+
+/* Forms */
+input,
+.popup-h2 {
+    font-size: 70%;
+
+    border: 1px solid #fafafa;
+    margin: 1%;
+    padding: 10px;
+    font-family: "Kreon", serif, sans-serif;
+    font-size: 50%;
 }

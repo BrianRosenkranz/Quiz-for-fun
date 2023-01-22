@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,23 @@
     <script defer src="assets/js/script.js"></script>
     <title>Quiz for fun</title>
 </head>
+
 <body>
+   <header class="header">
+    <h1>Quiz for fun</h1>
+</header>
     <div class="container">
         <div id="timer" class="set-timer hide">0</div>
-        <h2 onclick="togglePopup()" class="popup-h2">Sign up!</h2>
-        <form action="" method="post">
-           <div class="input-field"><input type="text" id="name" placeholder="Username"></div>
-           <div class="input-field"><input type="email" id="email" placeholder="example@example.com"></div>
-           <div><input type="submit" placeholder="Sign in!"></div>
+        <form id="form-container" method="" action="" target="_blank">
+            <h2 class="popup-h2">Sign up!</h2>
+            <p id="errors"></p>
+            <div class="username">
+                <label for="username">Username:</label>
+                <input id="username" name="username" type="text" required>
+            </div>
+            <input type="submit">
         </form>
-        </div>
+    
         <div id="question-container" class="hide">
             <div id="question">question</div>
             <div id="answer-button" class="button-grid">
@@ -33,4 +41,5 @@
         </div>
     </div>
 </body>
+
 </html>
