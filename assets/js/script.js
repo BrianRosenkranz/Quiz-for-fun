@@ -82,7 +82,8 @@ function showQuestion(question) {
 // remove buttons in html.
 function nextButton() {
     resetStatus(document.body);
-    nextButtons.classList.add('hide');
+    nextButtons.classList.add('hide')
+    nextButtons.innerText= "Next";
     while (answerButton.firstChild) {
         answerButton.removeChild(answerButton.firstChild);
 }
@@ -97,7 +98,7 @@ function selectAnswer(q) {
     });
     if (randomQuestions.length > questionIndex + 1 ) {
         nextButtons.classList.add("hide");
-    } else {
+    } else{
         startbtn.innerText = "Restart";
         startbtn.classList.remove('hide');
         nextButtons.innerText = "Finish";
@@ -196,7 +197,7 @@ const myQuestions = [{
     {
         question: "Which is the smallest country in the world??",
         answers: [{
-                text: 'switzerland',
+                text: 'Switzerland',
                 correct: false
             },
             {
