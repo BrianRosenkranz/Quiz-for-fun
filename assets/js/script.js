@@ -1,12 +1,13 @@
 let randomQuestions, questionIndex;
 let startbtn = document.getElementById("start-button");
 let nextButtons = document.getElementById("next-button");
+let picutre= document.getElementById("image")
 let questionContainer = document.getElementById("question-container");
 let timer = document.getElementById('timer');
 let score = document.getElementById('score');
-let currentScore=0;
+let currentScore = 0;
 let timeS = document.getElementById("timer-reduce")
-let time=5;
+let time = 5;
 let questionElement = document.getElementById("question");
 let answerButton = document.getElementById("answer-button");
 startbtn.addEventListener("click", quizGame);
@@ -29,12 +30,14 @@ function formFirst(event) {
         usernames.push(`${username}`);
         //form.submit();
         form.classList.add("hide")
+        document.getElementById("intro").classList.remove('hide')
         startbtn.classList.remove('hide')
     }
 
 }
 // stats the game after the form, with start button.
 function quizGame() {
+    document.getElementById("intro").classList.add('hide')
     startbtn.classList.add("hide");
     //get the questions randomly
     randomQuestions = myQuestions.sort(() => Math.random() - 0.5);
@@ -43,13 +46,14 @@ function quizGame() {
     showNextQuestion();
     timer.classList.remove('hide');
     score.classList.remove("hide");
-    let countdown= setInterval(()=>{
+    let countdown = setInterval(() => {
         time--;
-        timeS.innerText= time
-    },1000)
-    if(time<=0 || time<1){
-        clearInterval(countdown)
-    }
+        timeS.innerText = time
+        if (time <= 0 || time < 1) {
+            clearInterval(countdown)
+        }
+    }, 1000);
+    picutre.classList.add("hide")
 }
 // shows the question in container
 function showNextQuestion() {
@@ -72,57 +76,60 @@ function showQuestion(question) {
         answerButton.appendChild(button)
     });
 }
-// remove buttons in html and adding the new ones
-function nextButton(){
+// remove buttons in html.
+function nextButton() {
     resetStatus(document.body)
     nextButtons.classList.add('hide');
-    while (answerButton.firstChild){
-        answerButton.removeChild(answerButton.firstChild )
+    while (answerButton.firstChild) {
+        answerButton.removeChild(answerButton.firstChild)
     }
 }
 
 function selectAnswer(q) {
- let buttonChoice =q.target
- let correct = buttonChoice.dataset.correct;
- //Create function to check the correct answers from the new buttons
- checkStatusClass(document.body, correct);
- Array.from(answerButton.children).forEach(button => {
-    checkStatusClass(button, button.dataset.correct)
- })
- if(randomQuestions.length >questionIndex +1 /*array start wiht 0*/) {
-    nextButtons.classList.add("hide")
- }else{
-    startbtn.innerText="Restart"
-    startbtn.classList.remove('hide')
- }
- nextButtons.classList.remove("hide");
- //score function
+    let buttonChoice = q.target
+    let correct = buttonChoice.dataset.correct;
+    //Create function to check the correct answers from the new buttons
+    checkStatusClass(document.body, correct);
+    Array.from(answerButton.children).forEach(button => {
+        checkStatusClass(button, button.dataset.correct)
+    })
+    if (randomQuestions.length > questionIndex + 1 /*array start wiht 0*/ ) {
+        nextButtons.classList.add("hide")
+    } else {
+        startbtn.innerText = "Restart";
+        startbtn.classList.remove('hide');
+        nextButtons.innerText = "Finish";
+        nextButtons.classList.remove("hide");
+        currentScore = 0;
+        timer.classList.add("hide");
+        questionContainer.classList.add("hide")
+        picutre.classList.remove("hide")
+    }
+    nextButtons.classList.remove("hide");;
 }
 //inside the function, another function to reset each checked answer, and change the color
-function checkStatusClass(element, correct){
+function checkStatusClass(element, correct) {
     resetStatus(element);
-    if (correct){
+    if (correct) {
         element.classList.add("correct")
-        adjustScore(true)
+        adjustScore(true);
     } else {
         element.classList.add("incorrect")
-        adjustScore(false)
     }
 }
-function resetStatus(element){
+
+function resetStatus(element) {
     element.classList.remove('correct');
-    element.classList.remove("incorrect")
+    element.classList.remove("incorrect");
+    time = 60 + 1;
 }
+
 function adjustScore() {
     if (true) {
-      currentScore++;
-    } else {
-      if (currentScore > 0) {
-        currentScore--;
-        }
+        currentScore++;
     }
     document.getElementById("actual-score").textContent = currentScore;
-  }
+}
 const myQuestions = [{
         question: "How many bones are there in an adult human body?",
         answers: [{

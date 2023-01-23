@@ -5,54 +5,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script defer src="assets/js/script.js"></script>
     <title>Quiz for fun</title>
 </head>
 
 <body class="body-container">
-   <header class="header">
-    <h1>Quiz for fun</h1>
-    <div class="score-style hide" id="score">Score: <span id="actual-score">0</span>/10</div>
-</header>
-<section class="section">
-    <div class="container">
-        <div id="timer" class="set-timer hide">Timer: <span id="timer-reduce"></span>s</div>
-        <form id="form-container" method="POST" action="https://formdump.codeinstitute.net/" target="_blank">
-            <h2 class="popup-h2">Sign up!</h2>
-            <p id="errors"></p>
-            <div class="username">
-                <label for="username">Username:</label>
-                <input id="username" name="username" type="text" required>
+    <header class="header">
+        <h1>Quiz for fun</h1>
+        <div class="score-style hide" id="score">Score: <span id="actual-score">0</span>/20</div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <div id="image" class="hide">
+                <a href="https://images.pexels.com/photos/4835419/pexels-photo-4835419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    target="_blank" aria-label="It is an image of game over. It opens in a new tab.">
+                    <img src="assets/images/game-over.jpg" alt="Image of game over">
+                </a>
             </div>
-            <input type="submit">
-        </form>
-        <div id="question-container" class="hide">
-            <div id="question">question</div>
-            <div id="answer-button" class="button-grid">
-                <button class="button">answer1</button>
-                <button class="button">answer2</button>
-                <button class="button">answer3</button>
-                <button class="button">answer4</button>
+            <div id="timer" class="set-timer hide">Timer: <span id="timer-reduce"></span>s</div>
+            <form id="form-container" method="POST" action="https://formdump.codeinstitute.net/" target="_blank">
+                <h2 class="popup-h2">Sign up!</h2>
+                <p id="errors"></p>
+                <div class="username">
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" type="text" required>
+                </div>
+                <input type="submit">
+            </form>
+            <div id="intro" class="hide">
+                <p class="popup-h2">If you decide to start the game, you will have 60 seconds to answer each question.
+                    Each correct answer will give you 2 points and each incorrect answer 1 point. Good luck</p>
             </div>
+            <div id="question-container" class="hide">
+                <div id="question">question</div>
+                <div id="answer-button" class="button-grid">
+                    <button class="button">answer1</button>
+                    <button class="button">answer2</button>
+                    <button class="button">answer3</button>
+                    <button class="button">answer4</button>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="start-button" class="start-button button hide">start</button>
+                <button id="next-button" class="next-button button hide">next</button>
+            </div>
+            <div></div>
         </div>
-        <div class="controls">
-            <button id="start-button" class="start-button button hide">start</button>
-            <button id="next-button" class="next-button button hide">next</button>
-        </div>
-        <div></div>
-    </div>
-</section>
-<Footer class="footer">
-    <p>Copyright 2023 ©</p>
-    <a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"
-        aria-label="Goes to facebook on a new tab."></a>
-    <a href="https://twitter.com/" class="fa fa-twitter" target="_blank"
-        aria-label="Goes to twitter on a new tab."></a>
-    <a href="https://www.instagram.com/" class="fa fa-instagram" target="_blank"
-        aria-label="Goes to Instagram on a new tab."></a>
-</Footer>
-<script src="assets/js/script.js"></script>
+    </section>
+    <Footer class="footer">
+        <p>Copyright 2023 ©</p>
+        <a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"
+            aria-label="Goes to facebook on a new tab."></a>
+        <a href="https://twitter.com/" class="fa fa-twitter" target="_blank"
+            aria-label="Goes to twitter on a new tab."></a>
+        <a href="https://www.instagram.com/" class="fa fa-instagram" target="_blank"
+            aria-label="Goes to Instagram on a new tab."></a>
+    </Footer>
+
 </body>
 
 </html>

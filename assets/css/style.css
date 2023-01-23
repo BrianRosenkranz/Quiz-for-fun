@@ -7,7 +7,6 @@ font-family: 'Monofett', cursive; */
 *::before,
 *::after {
     box-sizing: border-box;
-    font-family: "Kreon", serif, sans-serif;
 }
 
 body {
@@ -18,8 +17,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-
-
+    font-family: "Kreon", serif, sans-serif;
 }
 /* Grid-container */
 .body-container {
@@ -86,6 +84,7 @@ body {
     height: 40%;
     order: 2;
     align-self: end;
+    color:black;
 }
   h1 {
     order: 1;
@@ -150,7 +149,13 @@ button:hover {
 .hide {
     display: none;
 }
-
+/* image style */
+img {
+  height: 76%;
+  width: 16%;
+  box-shadow: 2px 2px 4px 5px rgb(0 0 0 / 84%);
+  border-radius: 5px;
+}
 /* Forms */
 input,
 .popup-h2 {
@@ -167,27 +172,28 @@ footer > p {
   }
   .fa {
     padding: 20px;
-    font-size: 64% !important;
+    font-size: 74% !important;
     width: 2%;
     height: 10%;
     text-align: center;
     text-decoration: none;
-    margin: 5px 2px;
+    margin: 5px 10px;
     border-radius: 5px;
+    display: inline;
   }
   .fa:hover {
     opacity: 0.7;
   }
   .fa-facebook {
-    background: #3b5998;
+    background: #3b589800;
     color: white;
   }
   .fa-twitter {
-    background: #55acee;
+    background: #55acee00;
     color: white;
   }
   .fa-instagram {
-    background: #125688;
+    background: #12578800;
     color: white;
   }
   
