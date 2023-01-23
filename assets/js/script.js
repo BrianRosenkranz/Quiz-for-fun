@@ -1,20 +1,20 @@
 let randomQuestions, questionIndex;
 let startbtn = document.getElementById("start-button");
 let nextButtons = document.getElementById("next-button");
-let picutre= document.getElementById("image")
+let picutre= document.getElementById("image");
 let questionContainer = document.getElementById("question-container");
 let timer = document.getElementById('timer');
 let score = document.getElementById('score');
 let currentScore = 0;
-let timeS = document.getElementById("timer-reduce")
-let time = 5;
+let timeS = document.getElementById("timer-reduce");
+let time= 5;
 let questionElement = document.getElementById("question");
 let answerButton = document.getElementById("answer-button");
 startbtn.addEventListener("click", quizGame);
 nextButtons.addEventListener("click", () => {
     questionIndex++;
     showNextQuestion();
-})
+});
 //form function. First of everything. 
 let usernames = ["Harry", "Daisy", "Michael", "Sarah", "Sally"];
 let form = document.getElementById("form-container");
@@ -28,16 +28,25 @@ function formFirst(event) {
         errorMsg.innerHTML = `Sorry, the username ${username} is already in use. Please choose another username.`;
     } else {
         usernames.push(`${username}`);
-        //form.submit();
-        form.classList.add("hide")
-        document.getElementById("intro").classList.remove('hide')
-        startbtn.classList.remove('hide')
+        form.submit();
+        form.classList.add("hide");
+        document.getElementById("intro").classList.remove('hide');
+        startbtn.classList.remove('hide');
     }
 
 }
+function setTimer(){ setInterval(() => {
+    time--;
+    timeS.innerText = time;
+    if (time <= 0 || time < 0) {
+       timeS.innerText=time=60;
+       nextButtons.classList.remove("hide");
+       nextButtons.innerText="Next";
+    }
+}, 1000);}
 // stats the game after the form, with start button.
 function quizGame() {
-    document.getElementById("intro").classList.add('hide')
+    document.getElementById("intro").classList.add('hide');
     startbtn.classList.add("hide");
     //get the questions randomly
     randomQuestions = myQuestions.sort(() => Math.random() - 0.5);
@@ -46,14 +55,8 @@ function quizGame() {
     showNextQuestion();
     timer.classList.remove('hide');
     score.classList.remove("hide");
-    let countdown = setInterval(() => {
-        time--;
-        timeS.innerText = time
-        if (time <= 0 || time < 1) {
-            clearInterval(countdown)
-        }
-    }, 1000);
-    picutre.classList.add("hide")
+    setTimer();
+    picutre.classList.add("hide");
 }
 // shows the question in container
 function showNextQuestion() {
@@ -71,30 +74,29 @@ function showQuestion(question) {
         //check answer if is correct
         if (answer.correct) {
             button.dataset.correct = answer.correct;
-        };
-        button.addEventListener("click", selectAnswer)
-        answerButton.appendChild(button)
+        }
+        button.addEventListener("click", selectAnswer);
+        answerButton.appendChild(button);
     });
 }
 // remove buttons in html.
 function nextButton() {
-    resetStatus(document.body)
+    resetStatus(document.body);
     nextButtons.classList.add('hide');
     while (answerButton.firstChild) {
-        answerButton.removeChild(answerButton.firstChild)
-    }
+        answerButton.removeChild(answerButton.firstChild);
 }
-
+}
 function selectAnswer(q) {
-    let buttonChoice = q.target
+    let buttonChoice = q.target;
     let correct = buttonChoice.dataset.correct;
-    //Create function to check the correct answers from the new buttons
+    // check the correct answers from the new buttons
     checkStatusClass(document.body, correct);
     Array.from(answerButton.children).forEach(button => {
-        checkStatusClass(button, button.dataset.correct)
-    })
-    if (randomQuestions.length > questionIndex + 1 /*array start wiht 0*/ ) {
-        nextButtons.classList.add("hide")
+        checkStatusClass(button, button.dataset.correct);
+    });
+    if (randomQuestions.length > questionIndex + 1 ) {
+        nextButtons.classList.add("hide");
     } else {
         startbtn.innerText = "Restart";
         startbtn.classList.remove('hide');
@@ -102,26 +104,26 @@ function selectAnswer(q) {
         nextButtons.classList.remove("hide");
         currentScore = 0;
         timer.classList.add("hide");
-        questionContainer.classList.add("hide")
-        picutre.classList.remove("hide")
+        questionContainer.classList.add("hide");
+        picutre.classList.remove("hide");
     }
-    nextButtons.classList.remove("hide");;
+    nextButtons.classList.remove("hide");
 }
 //inside the function, another function to reset each checked answer, and change the color
 function checkStatusClass(element, correct) {
     resetStatus(element);
     if (correct) {
-        element.classList.add("correct")
+        element.classList.add("correct");
         adjustScore(true);
-    } else {
-        element.classList.add("incorrect")
+    } else{
+        element.classList.add("incorrect");
     }
 }
 
 function resetStatus(element) {
     element.classList.remove('correct');
     element.classList.remove("incorrect");
-    time = 60 + 1;
+    time=60;
 }
 
 function adjustScore() {
@@ -130,6 +132,7 @@ function adjustScore() {
     }
     document.getElementById("actual-score").textContent = currentScore;
 }
+
 const myQuestions = [{
         question: "How many bones are there in an adult human body?",
         answers: [{
@@ -331,3 +334,5 @@ const myQuestions = [{
         ],
     }
 ];
+
+
