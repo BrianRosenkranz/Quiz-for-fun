@@ -18,7 +18,6 @@ nextButtons.addEventListener("click", () => {
 });
 //form function. First of everything. 
 let usernames = ["Harry", "Daisy", "Michael", "Sarah", "Sally"];
-console.log(usernames)
 let form = document.getElementById("form-container");
 form.addEventListener('submit', formFirst);
 let errorMsg = document.getElementById("errors");
@@ -31,25 +30,26 @@ function validation(username) {
 function formFirst(event) {
     event.preventDefault();
     let username = document.getElementById('username').value;
-    validation(username)
+    validation(username);
     if (usernames.includes(username)) {
         errorMsg.innerHTML = `Sorry, the username ${username} is already in use. Please choose another username.`;
     } else {
         usernames.push(`${username}`);
         fbUsername.push(`${username}`);
         //form.submit();
-        // If i submit the form without action and method it won't start the game.
+        // If i submit the form without action and method it won't start the game. Bug
         form.classList.add("hide");
         document.getElementById("intro").classList.remove('hide');
         startbtn.classList.remove('hide');
     }
 }
+// feedback function
 function feedBack(){
     feedback.classList.remove("hide");
     let congrats = document.getElementById('h3-fb');
-    congrats.innerHTML=`Congratulation ${fbUsername}!`
+    congrats.innerHTML=`Congratulation ${fbUsername}!`;
 }
-console.log(fbUsername)
+// timer function
 function setTimer(){ setInterval(() => {
     time--;
     timeS.innerText = time;
@@ -71,7 +71,7 @@ function quizGame() {
     timer.classList.remove('hide');
     score.classList.remove("hide");
     setTimer();
-    feedback.classList.add("hide")
+    feedback.classList.add("hide");
 }
 // shows the question in container
 function showNextQuestion() {
@@ -96,12 +96,17 @@ function showQuestion(question) {
 // remove buttons in html.
 function nextButton() {
     resetStatus(document.body);
-    nextButtons.classList.add('hide')
+    nextButtons.classList.add('hide');
     nextButtons.innerText= "Next";
     while (answerButton.firstChild) {
         answerButton.removeChild(answerButton.firstChild);
 }
 }
+/*
+Function to bring the answer.
+checks the answers.
+creates Buttons wit the answers inside
+*/
 function selectAnswer(q) {
     let buttonChoice = q.target;
     let correct = buttonChoice.dataset.correct;
@@ -115,8 +120,9 @@ function selectAnswer(q) {
     } else{
         startbtn.innerText = "Restart";
         startbtn.classList.add('hide');
+        // Bug. It will still appear the nextButtons
         nextButtons.innerText = "Finish";
-        nextButtons.classList.remove("hide");
+        nextButtons.classList.add("hide");
         feedBack(nextButtons);
         currentScore = 0;
         timer.classList.add("hide");
@@ -124,7 +130,7 @@ function selectAnswer(q) {
     }
     nextButtons.classList.remove("hide");
 }
-//inside the function, another function to reset each checked answer, and change the color
+//Function + selectAnswer to check the answer. Event listener click to change the color
 function checkStatusClass(element, correct) {
     resetStatus(element);
     if (correct) {
@@ -134,11 +140,13 @@ function checkStatusClass(element, correct) {
         element.classList.add("incorrect");
     }
 }
+//After the answer is checked, nextButton() will reset the status.
 function resetStatus(element) {
     element.classList.remove('correct');
     element.classList.remove("incorrect");
     time=60;
 }
+// Function to adjust the score
 function adjustScore() {
     if (true) {
         currentScore++;
