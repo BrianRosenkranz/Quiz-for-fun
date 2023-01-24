@@ -1,7 +1,8 @@
 let randomQuestions, questionIndex;
 let startbtn = document.getElementById("start-button");
 let nextButtons = document.getElementById("next-button");
-let picutre= document.getElementById("image");
+let feedback= document.getElementById("feedback-container");
+let fbUsername= [''];
 let questionContainer = document.getElementById("question-container");
 let timer = document.getElementById('timer');
 let score = document.getElementById('score');
@@ -17,24 +18,38 @@ nextButtons.addEventListener("click", () => {
 });
 //form function. First of everything. 
 let usernames = ["Harry", "Daisy", "Michael", "Sarah", "Sally"];
+console.log(usernames)
 let form = document.getElementById("form-container");
 form.addEventListener('submit', formFirst);
 let errorMsg = document.getElementById("errors");
-
+function validation(username) {
+    if (username.trim() == "") {
+        alert("Enter your name");
+        return false;
+    }
+}
 function formFirst(event) {
     event.preventDefault();
     let username = document.getElementById('username').value;
+    validation(username)
     if (usernames.includes(username)) {
         errorMsg.innerHTML = `Sorry, the username ${username} is already in use. Please choose another username.`;
     } else {
         usernames.push(`${username}`);
-        form.submit();
+        fbUsername.push(`${username}`);
+        //form.submit();
+        // If i submit the form without action and method it won't start the game.
         form.classList.add("hide");
         document.getElementById("intro").classList.remove('hide');
         startbtn.classList.remove('hide');
     }
-
 }
+function feedBack(){
+    feedback.classList.remove("hide");
+    let congrats = document.getElementById('h3-fb');
+    congrats.innerHTML=`Congratulation ${fbUsername}!`
+}
+console.log(fbUsername)
 function setTimer(){ setInterval(() => {
     time--;
     timeS.innerText = time;
@@ -56,14 +71,13 @@ function quizGame() {
     timer.classList.remove('hide');
     score.classList.remove("hide");
     setTimer();
-    picutre.classList.add("hide");
+    feedback.classList.add("hide")
 }
 // shows the question in container
 function showNextQuestion() {
     nextButton();
     showQuestion(randomQuestions[questionIndex]);
 }
-
 // Function gets the question from myQuestions
 function showQuestion(question) {
     questionElement.innerHTML = question.question;
@@ -100,13 +114,13 @@ function selectAnswer(q) {
         nextButtons.classList.add("hide");
     } else{
         startbtn.innerText = "Restart";
-        startbtn.classList.remove('hide');
+        startbtn.classList.add('hide');
         nextButtons.innerText = "Finish";
         nextButtons.classList.remove("hide");
+        feedBack(nextButtons);
         currentScore = 0;
         timer.classList.add("hide");
         questionContainer.classList.add("hide");
-        picutre.classList.remove("hide");
     }
     nextButtons.classList.remove("hide");
 }
@@ -120,13 +134,11 @@ function checkStatusClass(element, correct) {
         element.classList.add("incorrect");
     }
 }
-
 function resetStatus(element) {
     element.classList.remove('correct');
     element.classList.remove("incorrect");
     time=60;
 }
-
 function adjustScore() {
     if (true) {
         currentScore++;

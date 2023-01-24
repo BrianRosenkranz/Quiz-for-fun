@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-US">
+<!-- The head -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Webpage quiz">
+    <meta name="keywords" content="quiz, fun, webpage quiz.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script defer src="assets/js/script.js"></script>
     <title>Quiz for fun</title>
 </head>
-
+<!-- body -->
 <body class="body-container">
+    <!-- header with score adn logo -->
     <header class="header">
-        <h1>Quiz for fun</h1>
+        <h1>Quiz For Fun</h1>
         <div class="score-style hide" id="score">Score: <span id="actual-score">0</span>/20</div>
     </header>
+    <!-- section with form and core -->
     <section class="section">
         <div class="container">
-            <div id="image" class="hide">
-                <a href="https://images.pexels.com/photos/4835419/pexels-photo-4835419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    target="_blank" aria-label="It is an image of game over. It opens in a new tab.">
-                    <img src="assets/images/game-over.jpg" alt="Image of game over">
-                </a>
-            </div>
+            <!-- timer, form, feedback -->
             <div id="timer" class="set-timer hide">Timer: <span id="timer-reduce"></span>s</div>
-            <form id="form-container" method="POST" action="https://formdump.codeinstitute.net/" target="_blank">
+            <form id="form-container">
                 <h2 class="popup-h2">Sign up!</h2>
                 <p id="errors"></p>
                 <div class="username">
@@ -34,10 +33,20 @@
                 </div>
                 <input type="submit">
             </form>
+            <form id="feedback-container" class="hide">
+                <h3 id="h3-fb"></h3>
+                <label for="feedback"></label>
+                <textarea id="feedback" name="feedback" rows="4" cols="40"
+                    placeholder="Please leave your feedback"></textarea>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+            <!-- Instruccion -->
             <div id="intro" class="hide">
                 <p class="popup-h2">If you decide to start the game, you will have 60 seconds to answer each question.
                     Each correct answer will give you 2 points and each incorrect answer 1 point. Good luck!!</p>
             </div>
+            <!-- Question and answer are given wiht js -->
             <div id="question-container" class="hide">
                 <div id="question">question</div>
                 <div id="answer-button" class="button-grid">
@@ -54,6 +63,7 @@
             <div></div>
         </div>
     </section>
+    <!-- Footer and social media icons -->
     <Footer class="footer">
         <p>Copyright 2023 ©</p>
         <a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"
@@ -63,7 +73,5 @@
         <a href="https://www.instagram.com/" class="fa fa-instagram" target="_blank"
             aria-label="Goes to Instagram on a new tab."></a>
     </Footer>
-
 </body>
-
 </html>
